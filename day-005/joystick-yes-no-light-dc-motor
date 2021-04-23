@@ -1,0 +1,52 @@
+int Xpin=A0;
+int Ypin=A1;
+int Spin=2;
+int Xval;
+int Yval;
+int Sval;
+int dt=200;
+int redPin=9;
+int yelPin=10;
+int grePin=11;
+int bright=255;
+int dim=0;
+int speedPin=5;
+int dir1=4;
+int dir2=3;
+int mSpeed=255;
+String input=" ";
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(Xpin,INPUT);
+pinMode(Ypin,INPUT);
+pinMode(Spin,INPUT);
+digitalWrite(Spin,HIGH);
+pinMode(redPin,OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  Xval=analogRead(Xpin);
+  Yval=analogRead(Ypin);
+  Sval=digitalRead(Spin);
+  delay(dt);
+  if (Xval > 700){
+    analogWrite(redPin,bright);
+  }
+  if (Xval <= 700){
+    analogWrite(redPin,dim);
+  }
+  if (Yval > 700){
+    analogWrite(yelPin,bright);
+  }
+  if (Yval <= 700){
+    analogWrite(yelPin,dim);
+  }
+  if (Sval == 0){
+    analogWrite(grePin,bright);
+  }
+  if (Sval == 1){
+    analogWrite(grePin,dim);
+  }
+}
