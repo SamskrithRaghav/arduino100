@@ -1,0 +1,37 @@
+int redPin=9;
+int bright=255;
+int dim=0;
+int speedPin=5;
+int dir1=4;
+int dir2=3;
+int mSpeed=255;
+String input=" ";
+void setup() {
+  // put your setup code here, to run once:
+pinMode(redPin,OUTPUT);
+pinMode(speedPin,OUTPUT);
+pinMode(dir1,OUTPUT);
+pinMode(dir2,OUTPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if (Serial.available() > 0){
+  }
+  input=Serial.readString();
+  if (input=="Yes"){
+    Serial.print(input+" ");
+    analogWrite(redPin,bright);
+    digitalWrite(dir1,HIGH);
+    digitalWrite(dir2,LOW);
+    analogWrite(speedPin,mSpeed);
+  }
+  if (input=="No"){
+    Serial.print(input+" ");
+    analogWrite(redPin,dim);
+    digitalWrite(dir1,LOW);
+    digitalWrite(dir2,HIGH);
+    analogWrite(speedPin,mSpeed);
+  }
+}
