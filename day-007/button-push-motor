@@ -1,0 +1,45 @@
+int state1 = 0;
+int state2 = 0;
+int dc1 = 5;
+int dc2 = 6;
+int push1 = 7;
+int push2 = 2;
+
+void setup() {
+  Serial.begin(115200);
+  // Serial.setDebugOutput(true);
+  Serial.println();
+  
+  // put your setup code here, to run once:
+  pinMode(dc1,OUTPUT);
+  pinMode(dc2,OUTPUT);
+  pinMode(push1,INPUT);
+  pinMode(push2,INPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  state1 = digitalRead(push1);
+  state2 = digitalRead(push2);
+
+  delay(1000);
+
+  if (state1 == HIGH) { Serial.println("State1 is HIGH");}
+      else if (state1 == LOW) { Serial.println("State1 is LOW");}
+
+  if (state2 == HIGH) { Serial.println("State2 is HIGH");}
+      else if (state1 == LOW) { Serial.println("State2 is LOW");}
+
+  digitalWrite(dc1,LOW);
+  digitalWrite(dc2,LOW);
+  
+  if (state1 == HIGH){
+    digitalWrite(dc1,LOW);
+    digitalWrite(dc2,HIGH);
+  }
+
+ else if (state2 == HIGH){
+    digitalWrite(dc1,HIGH);
+    digitalWrite(dc2,LOW);
+  }
+}
